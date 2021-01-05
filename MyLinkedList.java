@@ -30,6 +30,7 @@ public class MyLinkedList {
   }
 
   public boolean add(int index, String value) {
+    reset();
     Node n = new Node(value);
     if (index = 0) {
       n.setNext(start);
@@ -48,8 +49,43 @@ public class MyLinkedList {
     return true;
   }
 
+  public String get(int index) {
+    reset();
+    for(int i = 0; i < size; i++) {
+      if (i == index) {
+        return current.getData();
+      }
+      next();
+    }
+  }
+
+  public String set(int index, String value) {
+    reset();
+    for(int i = 0; i < size; i++) {
+      if (i == index) {
+        current.setData(value);
+        return value;
+      }
+      next();
+    }
+  }
+
+  public String toString() {
+    reset();
+    String out = "";
+    while(current != null) {
+      out += current.getData() + ", ";
+      next();
+    }
+    return out;
+  }
+
   private void next() {
     current = current.getNext();
+  }
+
+  private void reset() {
+    current = start;
   }
 
 }
