@@ -10,7 +10,7 @@ public class Node {
   }
 
   public void setData(String value) {
-    data = s;
+    data = value;
   }
 
   public void setNext(Node n) {

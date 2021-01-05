@@ -32,14 +32,14 @@ public class MyLinkedList {
   public boolean add(int index, String value) {
     reset();
     Node n = new Node(value);
-    if (index = 0) {
+    if (index == 0) {
       n.setNext(start);
       start = n;
       size++;
     }
     else {
       for(int i = 0; i < size; i++) {
-        if (i == index) {
+        if (i == index - 1) {
           n.setNext( current.getNext() );
           current.setNext(n);
         }
@@ -51,12 +51,14 @@ public class MyLinkedList {
 
   public String get(int index) {
     reset();
+    String out = "";
     for(int i = 0; i < size; i++) {
       if (i == index) {
-        return current.getData();
+        out = current.getData();
       }
       next();
     }
+    return out;
   }
 
   public String set(int index, String value) {
@@ -64,10 +66,10 @@ public class MyLinkedList {
     for(int i = 0; i < size; i++) {
       if (i == index) {
         current.setData(value);
-        return value;
       }
       next();
     }
+    return value;
   }
 
   public String toString() {
