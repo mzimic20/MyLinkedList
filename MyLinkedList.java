@@ -31,6 +31,7 @@ public class MyLinkedList {
   }
 
   public boolean add(int index, String value) {
+    if (index < 0 || index > size) throw new IndexOutOfBoundsException("" + index + " is not a valid index");
     reset();
     Node N, P;
     Node n = new Node(value);
@@ -40,7 +41,7 @@ public class MyLinkedList {
       start = n;
       size++;
     }
-    else if (index == size - 1) {
+    else if (index == size) {
       n.setPrev(end);
       end.setNext(n);
       end = n;
@@ -64,6 +65,7 @@ public class MyLinkedList {
   }
 
   public String get(int index) {
+    if (index < 0 || index > size) throw new IndexOutOfBoundsException("" + index + " is not a valid index");
     reset();
     String out = "";
     for(int i = 0; i < size; i++) {
