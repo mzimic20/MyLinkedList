@@ -22,6 +22,7 @@ public class MyLinkedList {
       size++;
     }
     else {
+      n.setPrev(end);
       end.setNext(n);
       end = n;
       size++;
@@ -31,20 +32,33 @@ public class MyLinkedList {
 
   public boolean add(int index, String value) {
     reset();
+    Node N, P;
     Node n = new Node(value);
     if (index == 0) {
       n.setNext(start);
+      start.setPrev(n);
       start = n;
+      size++;
+    }
+    else if (index == size - 1) {
+      n.setPrev(end);
+      end.setNext(n);
+      end = n;
       size++;
     }
     else {
       for(int i = 0; i < size; i++) {
         if (i == index - 1) {
-          n.setNext( current.getNext() );
+          N = current.getNext();
+          P = current;
+          n.setNext(N);
+          n.setPrev(P);
+          ( current.getNext() ).setPrev(n);
           current.setNext(n);
         }
         next();
       }
+      size++;
     }
     return true;
   }
@@ -74,16 +88,30 @@ public class MyLinkedList {
 
   public String toString() {
     reset();
-    String out = "";
-    while(current != null) {
+    String out = "[";
+    while(current != end) {
       out += current.getData() + ", ";
       next();
     }
-    return out;
+    return out + end.getData() + "]";
+  }
+
+  public String toStringReversed() {
+    current = end;
+    String out = "[";
+    while(current != start) {
+      out += current.getData() + ", ";
+      prev();
+    }
+    return out + start.getData() + "]";
   }
 
   private void next() {
     current = current.getNext();
+  }
+
+  private void prev() {
+    current = current.getPrev();
   }
 
   private void reset() {

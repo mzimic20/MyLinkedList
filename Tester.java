@@ -11,6 +11,7 @@ public class Tester {
     System.out.println( l.toString() );
     l.set(3, "despair");
     System.out.println( l.toString() );
+    System.out.println( l.toStringReversed() );
     System.out.println( l.get(1) );
     System.out.println( l.get(3) );
   }

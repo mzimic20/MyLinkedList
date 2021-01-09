@@ -1,12 +1,12 @@
 public class Node {
 
   private String data;
-  private Node next/*, prev*/;
+  private Node next, prev;
 
   public Node(String value) {
     data = value;
     next = null;
-//    prev = null;
+    prev = null;
   }
 
   public void setData(String value) {
@@ -17,11 +17,9 @@ public class Node {
     next = n;
   }
 
-/*
   public void setPrev(Node n) {
     prev = n;
   }
-*/
 
   public String getData() {
     return data;
@@ -31,10 +29,8 @@ public class Node {
     return next;
   }
 
-/*
   public Node getPrev() {
     return prev;
   }
-*/
 
 }
