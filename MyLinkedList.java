@@ -127,6 +127,13 @@ public class MyLinkedList {
     }
   }
 
+  public void extend(MyLinkedList other) {
+    end.setNext( other.getStart() );
+    end = other.getEnd();
+    size += other.size();
+    other.clear();
+  }
+
   public String toString() {
     reset();
     String out = "[";
@@ -159,6 +166,20 @@ public class MyLinkedList {
 
   private void reset() {
     current = start;
+  }
+
+  private Node getStart() {
+    return start;
+  }
+
+  private Node getEnd() {
+    return end;
+  }
+
+  private void clear() {
+    start = null;
+    end = null;
+    size = 0;
   }
 
 }
