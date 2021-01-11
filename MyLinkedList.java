@@ -16,7 +16,7 @@ public class MyLinkedList {
 
   public boolean add(String value) {
     Node n = new Node(value);
-    if ( size() == 0) {
+    if (size == 0) {
       start = n;
       end = n;
       size++;
@@ -88,9 +88,49 @@ public class MyLinkedList {
     return value;
   }
 
+  public String remove(int index) {
+    if (index < 0 || index > size) throw new IndexOutOfBoundsException("" + index + " is not a valid index");
+    String s = "";
+    Node r = start;
+    if (size == 1) {
+      s = get(0);
+      start = null;
+      end = null;
+      size--;
+      return s;
+    }
+    else if (index == 0) {
+      s = get(0);
+      start = start.getNext();
+      start.setPrev(null);
+      size--;
+      return s;
+    }
+    else if (index == size - 1) {
+      s = get(size - 1);
+      end = end.getPrev();
+      end.setNext(null);
+      size--;
+      return s;
+    }
+    else {
+      for(int i = 1; i < size - 1; i++) {
+        r = r.getNext();
+        if (i == index) {
+          s = r.getData();
+          ( r.getPrev() ).setNext( r.getNext() );
+          ( r.getNext() ).setPrev( r.getPrev() );
+          size--;
+        }
+      }
+      return s;
+    }
+  }
+
   public String toString() {
     reset();
     String out = "[";
+    if (size == 0) return out += "]";
     while(current != end) {
       out += current.getData() + ", ";
       next();
@@ -101,6 +141,7 @@ public class MyLinkedList {
   public String toStringReversed() {
     current = end;
     String out = "[";
+    if (size == 0) return out += "]";
     while(current != start) {
       out += current.getData() + ", ";
       prev();
